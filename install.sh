@@ -86,7 +86,7 @@ print_style "Installing service." "info"
 chmod +x $GIT_REPO_PATH/lumi
 cp $GIT_REPO_PATH/lumi /etc/init.d/lumi
 /etc/init.d/lumi enable
-/etc/init.d/lumi start
+/etc/init.d/lumi restart
 LUMI_SERVICE_STATUS=$(/etc/init.d/lumi status)
 if [ "${LUMI_SERVICE_STATUS}" = "running" ]; then
     print_style "lumi service is ${LUMI_SERVICE_STATUS}." "success"
