@@ -21,9 +21,9 @@ mqtt_client.on('connect', () => {
 mqtt_client.on('message', (topic, message) => {
     common.myLog('Received topic= ' + topic, common.colors.yellow);
     common.myLog('message = ' + message);
-    common.myLog(topic.split("/")[1]);
+    common.myLog(topic.split("/")[2]);
     try {
-        switch (topic.split("/")[1]) {
+        switch (topic.split("/")[2]) {
             case 'light':
                 // lumi/light/set
                 gateway.setLamp(message);
@@ -31,7 +31,7 @@ mqtt_client.on('message', (topic, message) => {
             case 'audio':
                 // lumi/audio/volume/set
                 // lumi/audio/play/set
-                switch (topic.split("/")[2]) {
+                switch (topic.split("/")[3]) {
                     case 'play':
                         gateway.setPlay(message);
                         break;
