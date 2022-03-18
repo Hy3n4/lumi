@@ -36,6 +36,7 @@ if [ "${USE_MAC_IN_MQTT_TOPIC}" = "true" ]; then
 else
     MQTT_TOPIC="${MQTT_HOSTNAME}"
 fi
+echo $MQTT_HOSTNAME
 print_style "Checking if dependencies are installed." "info"
 INSTALLED_DEPS=$(opkg list-installed | cut -f 1 -d " " | grep -Ec "^node|^git-http|^mpg123|^mpc|^mpd-full")
 if [ "${INSTALLED_DEPS}" = 5 ]; then
