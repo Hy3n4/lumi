@@ -21,7 +21,7 @@ print_style () {
     printf "$STARTCOLOR%b$ENDCOLOR\n" "$1";
 }
 
-: "${USE_MAC_IN_MQTT_TOPIC:=false}"
+: "${USE_MAC_IN_MQTT_TOPIC:=true}"
 : "${MQTT_SERVER:=localhost}"
 : "${MQTT_USERNAME:=mqtt}"
 : "${MQTT_PASSWORD:=password}"
@@ -34,7 +34,7 @@ if [ "${USE_MAC_IN_MQTT_TOPIC}" = "true" ]; then
     MQTT_HOSTNAME=$(printf "%s_%s" "${MQTT_HOSTNAME}" "$(ifconfig wlan0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed 's/\://g')")
     MQTT_TOPIC=$(printf "%s_%s" "${MQTT_HOSTNAME}" "$(ifconfig wlan0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed 's/\://g')")
 else
-    MQTT_HOSTNAME="${HOSTNAME_VALUE}"
+    MQTT_TOPIC="${MQTT_HOSTNAME}"
 fi
 print_style "Checking if dependencies are installed." "info"
 INSTALLED_DEPS=$(opkg list-installed | cut -f 1 -d " " | grep -Ec "^node|^git-http|^mpg123|^mpc|^mpd-full")
