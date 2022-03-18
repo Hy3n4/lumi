@@ -19,6 +19,31 @@ Voice notification | | lumi/say/set
 Questions and discussion - https://t.me/lumi_mqtt
 
 ---
+## Instalation via script (recommended)
+``` sh
+wget -O - https://raw.githubusercontent.com/Hy3n4/lumi/master/install.sh | /bin/sh
+```
+this will install needed dependencies, creates init script and start service
+
+You can customize output `config.json` with env variables
+
+Variable|Default value|Description
+---|---|---
+MQTT_SERVER | localhost | hostname of your MQTT server
+MQTT_USERNAME | mqtt | MQTT username
+MQTT_PASSWORD | password | MQTT user password
+GIT_REPO_URL | url of this Github repo | You can change repo to different github repository or branch
+GIT_REPO_PATH | /opt/lumi | destination path where lumi is installed
+USE_MAC_IN_MQTT_TOPIC | true | choose wheter to use mac in MQTT topic
+
+You can pass all variables in one line
+``` sh
+MQTT_SERVER=mqtt.example.com MQTT_USERNAME=mqtt MQTT_PASWORD="Super.Secret.Pass" wget -O - https://raw.githubusercontent.com/Hy3n4/lumi/master/install.sh | /bin/sh
+```
+
+:warning: You can use this script to change configuration as well but remember to specify all variables or **they will be rewriten by default values!**
+
+## Manual installation
 Node.js, git, mpc packages are required to download and work
 
 Installing them:
