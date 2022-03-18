@@ -63,7 +63,7 @@ cat <<EOL > /opt/lumi/config.json
   "sound_channel": "Master",
   "sound_volume": 50,
   "mqtt_url": "mqtt://${MQTT_SERVER}",
-  "mqtt_topic": "${MQTT_HOSTNAME}",
+  "mqtt_topic": "lumi/${MQTT_HOSTNAME}",
   "use_mac_in_mqtt_topic": ${USE_MAC_IN_MQTT_TOPIC},
   "mqtt_options": {
     "port": 1883,
@@ -74,7 +74,7 @@ cat <<EOL > /opt/lumi/config.json
     "clean": true,
     "encoding": "utf8",
     "will": {
-      "topic": "${MQTT_HOSTNAME}/state",
+      "topic": "lumi/${MQTT_HOSTNAME}/state",
       "payload": "offline",
       "qos": 1,
       "retain": true
