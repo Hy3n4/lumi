@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/busybox sh
 # shellcheck shell=dash
 
 print_style () {
