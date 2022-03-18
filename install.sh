@@ -32,7 +32,7 @@ LOCALREPO_VC_DIR=$GIT_REPO_PATH/.git
 
 if [ "${USE_MAC_IN_MQTT_TOPIC}" = "true" ]; then
     MQTT_HOSTNAME=$(printf "%s_%s" "${MQTT_HOSTNAME}" "$(ifconfig wlan0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed 's/\://g')")
-    MQTT_TOPIC=$(printf "%s_%s" "${MQTT_HOSTNAME}" "$(ifconfig wlan0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed 's/\://g')")
+    MQTT_TOPIC="${MQTT_HOSTNAME}"
 else
     MQTT_TOPIC="${MQTT_HOSTNAME}"
 fi
