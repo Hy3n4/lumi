@@ -21,7 +21,7 @@ print_style () {
     printf "$STARTCOLOR%b$ENDCOLOR\n" "$1";
 }
 
-: "${USE_MAC_IN_MQTT_TOPIC:=true}"
+: "${USE_MAC_IN_MQTT_TOPIC:=false}"
 : "${MQTT_SERVER:=localhost}"
 : "${MQTT_USERNAME:=mqtt}"
 : "${MQTT_PASSWORD:=password}"
@@ -32,6 +32,7 @@ LOCALREPO_VC_DIR=$GIT_REPO_PATH/.git
 
 if [ "${USE_MAC_IN_MQTT_TOPIC}" = "true" ]; then
     MQTT_HOSTNAME=$(printf "%s_%s" "${MQTT_HOSTNAME}" "$(ifconfig wlan0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed 's/\://g')")
+    MQTT_TOPIC=$(printf "%s_%s" "${MQTT_HOSTNAME}" "$(ifconfig wlan0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed 's/\://g')")
 else
     MQTT_HOSTNAME="${HOSTNAME_VALUE}"
 fi
@@ -74,7 +75,7 @@ cat <<EOL > /opt/lumi/config.json
     "clean": true,
     "encoding": "utf8",
     "will": {
-      "topic": "lumi/${MQTT_HOSTNAME}/state",
+      "topic": "lumi/${MQTT_TOPIC}/state",
       "payload": "offline",
       "qos": 1,
       "retain": true
