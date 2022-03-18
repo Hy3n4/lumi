@@ -38,13 +38,13 @@ USE_MAC_IN_MQTT_TOPIC | true | choose wheter to use mac in MQTT topic
 
 You can pass all variables in one line
 ``` sh
-MQTT_SERVER=mqtt.example.com \
-MQTT_USERNAME=mqtt \
-MQTT_PASWORD="Super.Secret.Pass" \
-wget -O - https://raw.githubusercontent.com/Hy3n4/lumi/master/install.sh | /bin/sh
+export MQTT_SERVER=<mqtt_server> && \
+export MQTT_USERNAME=lumi && \
+export MQTT_PASSWORD="password" && \
+wget -qO- https://raw.githubusercontent.com/Hy3n4/lumi/master/install.sh | /bin/sh
 ```
 
-:bulb: Script is using `uname -n` and evenly mac address to define mqtt topic.
+:bulb: To define mqtt topic script is using `uname -n` and mac address when `USE_MAC_IN_MQTT_TOPIC` is specified.
 
 :warning: You can use this script to change configuration as well but remember to specify all variables or **they will be rewriten by default values!**
 
