@@ -22,7 +22,6 @@ mqtt_client.on('message', (topic, message) => {
     common.myLog('Received topic= ' + topic, common.colors.yellow);
     common.myLog('message = ' + message);
     try {
-        common.myLog(topic.split("/")[1]);
         switch (topic.split("/")[1]) {
             case 'light':
                 // lumi/light/set
