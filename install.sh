@@ -35,17 +35,23 @@ if [ "${USE_MAC_IN_MQTT_TOPIC}" = "true" ]; then
 else
     MQTT_HOSTNAME="${HOSTNAME}"
 fi
-print_style "Installing dependencies..." "info"
-print_style "Running opkg update." "info"; print_style "(This might take a while...)" "warning"
-opkg update >/dev/null 2>&1
-print_style "Installing packages..." "info"
-opkg install node git-http mpg123 mpc mpd-full >/dev/null 2>&1
+print_style "Checking if dependencies are installed." "info"
+INSTALLED_DEPS=$(opkg list-installed | cut -f 1 -d " " | grep -Ec "^node|^git-http|^mpg123|^mpc|^mpd-full")
+if [ "${INSTALLED_DEPS}" = 5 ]; then
+    print_style "Dependencies already installed." "info"
+else
+    print_style "Installing dependencies." "info"
+    print_style "Running opkg update." "info"; print_style "(This might take a while...)" "warning"
+    opkg update >/dev/null 2>&1
+    print_style "Installing packages." "info"
+    opkg install node git-http mpg123 mpc mpd-full >/dev/null 2>&1
+fi
 mkdir -p /opt
 cd /opt || { print_style "Cannot cd to /opt" "danger"; exit 1; }
 [ -d $LOCALREPO_VC_DIR ] || git clone $GIT_REPO_URL $GIT_REPO_PATH
 (cd $GIT_REPO_PATH; git pull $GIT_REPO_URL)
 cd $GIT_REPO_PATH || { printf '%b\n' "cannot cd to /opt/lumi"; exit 1; }
-print_style "Generating lumi config file..." "info"
+print_style "Generating lumi config file." "info"
 cat <<EOL > /opt/lumi/config.json
 {
   "sensor_debounce_period": 300,
@@ -76,15 +82,15 @@ cat <<EOL > /opt/lumi/config.json
   }
 }
 EOL
-print_style "Installing service..." "info"
+print_style "Installing service." "info"
 chmod +x $GIT_REPO_PATH/lumi
 cp $GIT_REPO_PATH/lumi /etc/init.d/lumi
 /etc/init.d/lumi enable
 /etc/init.d/lumi start
 LUMI_SERVICE_STATUS=$(/etc/init.d/lumi status)
 if [ "${LUMI_SERVICE_STATUS}" = "running" ]; then
-    print_style "lumi service is ${LUMI_SERVICE_STATUS}" "success"
+    print_style "lumi service is ${LUMI_SERVICE_STATUS}." "success"
 else
-    print_style "lumi service failed to start and is now ${LUMI_SERVICE_STATUS}" "danger"
+    print_style "lumi service failed to start and is now ${LUMI_SERVICE_STATUS}." "danger"
 fi
-print_style "All done..." "success"
+print_style "All done!" "success"
