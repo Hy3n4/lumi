@@ -30,6 +30,8 @@ print_style () {
 GIT_REPO_PATH="/opt/lumi"
 LOCALREPO_VC_DIR=$GIT_REPO_PATH/.git
 
+echo $MQTT_SERVER
+
 if [ "${USE_MAC_IN_MQTT_TOPIC}" = "true" ]; then
     MQTT_HOSTNAME=$(printf "%s_%s" "${HOSTNAME_VALUE}" "$(ifconfig wlan0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed 's/\://g')")
 else
