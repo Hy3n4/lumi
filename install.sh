@@ -40,6 +40,7 @@ fi
 print_style "MQTT_HOSTNAME: ${MQTT_HOSTNAME}" "info"
 print_style "MQTT_USERNAME: ${MQTT_USERNAME}" "info"
 print_style "MQTT_PASSWORD: ${MQTT_PASSWORD}" "info"
+print_style "MQTT_TOPIC: ${MQTT_TOPIC}" "info"
 
 print_style "Checking if dependencies are installed." "info"
 INSTALLED_DEPS=$(opkg list-installed | cut -f 1 -d " " | grep -Ec "^node|^git-http|^mpg123|^mpc|^mpd-full")
