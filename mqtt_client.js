@@ -6,7 +6,7 @@ const mqtt_client = mqtt.connect(common.config.mqtt_url, common.config.mqtt_opti
 mqtt_client.on('connect', () => {
     common.myLog('mqtt_client.connect', common.colors.green);
 
-    // Отправляем состояния устройств
+    // Sending device states
     gateway.getState();
     gateway.getLamp();
     gateway.getIlluminance();

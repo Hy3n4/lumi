@@ -1,7 +1,7 @@
 {
   "name": "lumi",
   "version": "1.0.0",
-  "description": "MQTT агент для шлюза Xiaomi DGNWG05LM с прошивкой [OpenWRT](https://github.com/openlumi/xiaomi-gateway-openwrt).  \r Позволяет взаимодействовать со шлюзом через MQTT.",
+  "description": "MQTT agent for Xiaomi DGNWG05LM gateway with [OpenWRT] firmware(https://github.com/openlumi/xiaomi-gateway-openwrt). \r Allows you to interact with the gateway via MQTT.",
   "main": "lumi.js",
   "dependencies": {
     "bl": "^4.0.3",

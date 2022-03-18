@@ -10,13 +10,13 @@
 	"sound_channel": "Master",
 	"sound_volume": 50,
 
-	"mqtt_url": "mqtt://адрес mqtt сервера",
+	"mqtt_url": "mqtt://mqtt_server_address",
 	"mqtt_topic": "lumi",
 	"use_mac_in_mqtt_topic": false,
 	"mqtt_options": {
 		"port": 1883,
-		"username":"логин для mqtt сервера",
-		"password": "пароль для mqtt сервера",
+		"username":"mqtt_username",
+		"password": "mqtt_password",
 		"keepalive": 60,
 		"reconnectPeriod": 1000,
 		"clean": true,
