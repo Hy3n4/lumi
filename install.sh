@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/sh
 # shellcheck shell=dash
 
 print_style () {
