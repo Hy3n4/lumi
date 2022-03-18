@@ -38,7 +38,10 @@ USE_MAC_IN_MQTT_TOPIC | true | choose wheter to use mac in MQTT topic
 
 You can pass all variables in one line
 ``` sh
-MQTT_SERVER=mqtt.example.com MQTT_USERNAME=mqtt MQTT_PASWORD="Super.Secret.Pass" wget -O - https://raw.githubusercontent.com/Hy3n4/lumi/master/install.sh | /bin/sh
+MQTT_SERVER=mqtt.example.com \
+MQTT_USERNAME=mqtt \
+MQTT_PASWORD="Super.Secret.Pass" \
+wget -O - https://raw.githubusercontent.com/Hy3n4/lumi/master/install.sh | /bin/sh
 ```
 
 :warning: You can use this script to change configuration as well but remember to specify all variables or **they will be rewriten by default values!**

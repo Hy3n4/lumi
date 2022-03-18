@@ -35,9 +35,9 @@ else
 fi
 print_style "Installing dependencies..." "info"
 print_style "Running opkg update." "info"; print_style "(This might take a while...)" "warning"
-# opkg update >/dev/null 2>&1
+opkg update >/dev/null 2>&1
 print_style "Installing packages..." "info"
-# opkg install node git-http mpg123 mpc mpd-full >/dev/null 2>&1
+opkg install node git-http mpg123 mpc mpd-full >/dev/null 2>&1
 mkdir -p /opt
 cd /opt || { print_style "Cannot cd to /opt" "danger"; exit 1; }
 [ -d $LOCALREPO_VC_DIR ] || git clone $GIT_REPO_URL $GIT_REPO_PATH
