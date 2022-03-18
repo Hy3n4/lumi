@@ -28,10 +28,12 @@ MQTT_PASSWORD="${MQTT_PASSWORD:-password}"
 GIT_REPO_URL="https://github.com/Hy3n4/lumi.git"
 GIT_REPO_PATH="/opt/lumi"
 LOCALREPO_VC_DIR=$GIT_REPO_PATH/.git
+HOSTNAME=${HOSTNAME:-$(uname -n)}
+
 if [ "${USE_MAC_IN_MQTT_TOPIC}" = "true" ]; then
-    MQTT_HOSTNAME=$(printf "%s_%s" "$(uname -n)" "$(ifconfig wlan0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed 's/\://g')")
+    MQTT_HOSTNAME=$(printf "%s_%s" "${HOSTNAME}" "$(ifconfig wlan0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed 's/\://g')")
 else
-    MQTT_HOSTNAME=$(uname -n)
+    MQTT_HOSTNAME="${HOSTNAME}"
 fi
 print_style "Installing dependencies..." "info"
 print_style "Running opkg update." "info"; print_style "(This might take a while...)" "warning"

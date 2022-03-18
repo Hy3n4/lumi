@@ -44,6 +44,8 @@ MQTT_PASWORD="Super.Secret.Pass" \
 wget -O - https://raw.githubusercontent.com/Hy3n4/lumi/master/install.sh | /bin/sh
 ```
 
+:bulb: Script is using `uname -n` and evenly mac address to define mqtt topic.
+
 :warning: You can use this script to change configuration as well but remember to specify all variables or **they will be rewriten by default values!**
 
 ## Manual installation
