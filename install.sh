@@ -21,19 +21,19 @@ print_style () {
     printf "$STARTCOLOR%b$ENDCOLOR\n" "$1";
 }
 
-USE_MAC_IN_MQTT_TOPIC="true"
-MQTT_SERVER="${MQTT_SERVER:-localhost}"
-MQTT_USERNAME="${MQTT_USERNAME:-mqtt}"
-MQTT_PASSWORD="${MQTT_PASSWORD:-password}"
-GIT_REPO_URL="https://github.com/Hy3n4/lumi.git"
+: "${USE_MAC_IN_MQTT_TOPIC:=true}"
+: "${MQTT_SERVER:=localhost}"
+: "${MQTT_USERNAME:=mqtt}"
+: "${MQTT_PASSWORD:=password}"
+: "${MQTT_HOSTNAME:=$(uname -n)}"
+: "${GIT_REPO_URL:="https://github.com/Hy3n4/lumi.git"}"
 GIT_REPO_PATH="/opt/lumi"
 LOCALREPO_VC_DIR=$GIT_REPO_PATH/.git
-HOSTNAME=${HOSTNAME:-$(uname -n)}
 
 if [ "${USE_MAC_IN_MQTT_TOPIC}" = "true" ]; then
-    MQTT_HOSTNAME=$(printf "%s_%s" "${HOSTNAME}" "$(ifconfig wlan0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed 's/\://g')")
+    MQTT_HOSTNAME=$(printf "%s_%s" "${HOSTNAME_VALUE}" "$(ifconfig wlan0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed 's/\://g')")
 else
-    MQTT_HOSTNAME="${HOSTNAME}"
+    MQTT_HOSTNAME="${HOSTNAME_VALUE}"
 fi
 print_style "Checking if dependencies are installed." "info"
 INSTALLED_DEPS=$(opkg list-installed | cut -f 1 -d " " | grep -Ec "^node|^git-http|^mpg123|^mpc|^mpd-full")

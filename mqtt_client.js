@@ -19,7 +19,7 @@ mqtt_client.on('connect', () => {
 });
 
 mqtt_client.on('message', (topic, message) => {
-    common.myLog('Получен topic= ' + topic, common.colors.yellow);
+    common.myLog('Received topic= ' + topic, common.colors.yellow);
     common.myLog('message = ' + message);
     try {
         switch (topic.split("/")[1]) {
